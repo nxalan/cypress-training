@@ -15,7 +15,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "stric": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
