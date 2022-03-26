@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useState, useEffect } from 'react'
 import Context from '@/presentation/contexts/form/form-context'
 import Styles from './login-styles.scss'
