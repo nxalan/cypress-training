@@ -13,7 +13,6 @@ const makeSut = (): SutTypes => {
   }
 }
 
-
 describe('Login Component', () => {
   test('Should start with inicial state', () => {
     const { sut } = makeSut()
