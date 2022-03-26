@@ -37,6 +37,9 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
 
   const handleSubmit = async (event: React.SyntheticEvent): Promise<void> => {
     event.preventDefault()
+    if (state.isLoading) {
+      return
+    }
     setState((prevState) => ({
       ...prevState,
       isLoading: true
