@@ -9,12 +9,12 @@
     "test:watch": "npm test -- --watch",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",
-    "test:coveralls": "npm run test:ci && coveralls < coverage/lconv.info",
+    "test:coveralls": "npm run test:ci && coveralls < coverage/lcov.info",
     "check": "npm-check -u -s"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Alan Oliveira",
+  "license": "GNU GPL3",
   "devDependencies": {
     "@faker-js/faker": "^6.0.0",
     "@testing-library/react": "^12.1.4",
