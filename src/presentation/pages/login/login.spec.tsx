@@ -183,7 +183,6 @@ describe('Login Component', () => {
     expect(history.location.pathname).toBe('/signup')
   })
 
-
   test('Should present error if SaveAccessToken fails', async () => {
     const { sut, saveAccessTokenMock } = makeSut()
     const error = new InvalidCredentialsError()
