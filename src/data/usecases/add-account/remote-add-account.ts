@@ -14,7 +14,6 @@ export class RemoteAddAccount implements AddAccount {
       url: this.url,
       body: params
     })
-    /* eslint no-fallthrough: "error" */
     switch (httpResponse.statusCode) {
       case HttpStatusCode.forbidden: throw new EmailInUseError()
       case HttpStatusCode.ok: break
