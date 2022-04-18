@@ -34,23 +34,23 @@ const SignUp: React.FC<Props> = ({ validation }: Props) => {
   useEffect(() => {
     setState((prevState) => ({
       ...prevState,
-      nameError: validation.validate('email', state.email)
+      emailError: validation.validate('email', state.email)
     }))
   }, [state.email])
 
   useEffect(() => {
     setState((prevState) => ({
       ...prevState,
-      nameError: validation.validate('password', state.password)
+      passwordError: validation.validate('password', state.password)
     }))
   }, [state.password])
 
   useEffect(() => {
     setState((prevState) => ({
       ...prevState,
-      nameError: validation.validate('passwordConfirmation', state.passwordConfirmation)
+      passwordConfirmationError: validation.validate('passwordConfirmation', state.passwordConfirmation)
     }))
-  }, [state.password])
+  }, [state.passwordConfirmation])
 
   return (
     <div className={Styles.signup}>
