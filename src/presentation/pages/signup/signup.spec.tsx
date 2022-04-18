@@ -2,7 +2,7 @@ import React from 'react'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 import { render, RenderResult, cleanup, waitFor, fireEvent } from '@testing-library/react'
-import { Signup } from '@/presentation/pages'
+import { SignUp } from '@/presentation/pages'
 import { ValidationStub, SaveAccessTokenMock , Helper, AddAccountSpy } from '@/presentation/test'
 import faker from '@faker-js/faker'
 import { EmailInUseError } from '@/domain/errors'
@@ -25,7 +25,7 @@ const makeSut = (params?: SutParams): SutTypes => {
   const saveAccessTokenMock = new SaveAccessTokenMock()
   const sut = render(
     <Router history={history}>
-      <Signup
+      <SignUp
         validation={validationStub}
         addAccount={addAccountSpy}
         saveAccessToken={saveAccessTokenMock}
