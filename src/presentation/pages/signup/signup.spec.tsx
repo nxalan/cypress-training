@@ -20,7 +20,7 @@ const makeSut = (params?: SutParams): SutTypes => {
   validationStub.errorMessage = params?.validationError
   const sut = render(
     <Signup
-    validation={validationStub}
+      validation={validationStub}
     />
   )
   return {
@@ -91,5 +91,14 @@ describe('SignUp Component', () => {
     const { sut } = makeSut()
     Helper.populateField(sut, 'passwordConfirmation')
     Helper.testStatusForField(sut, 'passwordConfirmation')
+  })
+
+  test('Should enable submit button if form is valid', () => {
+    const { sut } = makeSut()
+    Helper.populateField(sut, 'name')
+    Helper.populateField(sut, 'email')
+    Helper.populateField(sut, 'password')
+    Helper.populateField(sut, 'passwordConfirmation')
+    Helper.testButtonIsDisabled(sut, 'submit', false)
   })
 })
