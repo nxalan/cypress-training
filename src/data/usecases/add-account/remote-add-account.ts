@@ -14,10 +14,12 @@ export class RemoteAddAccount implements AddAccount {
       url: this.url,
       body: params
     })
+    /* eslint no-fallthrough: "error" */
     switch (httpResponse.statusCode) {
-      case HttpStatusCode.ok: return null
       case HttpStatusCode.forbidden: throw new EmailInUseError()
+      case HttpStatusCode.ok: break
       default: throw new UnexpectedError()
     }
+    return httpResponse.body
   }
 }
