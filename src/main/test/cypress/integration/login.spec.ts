@@ -53,19 +53,19 @@ describe('Login', () => {
     FormHelper.testUrl('/login')
   })
 
+  it('Should present UnexpectedError if invalid data is returned', () => {
+    Http.mockInvalidData()
+    simulateValidSubmit()
+    FormHelper.testMainError('Algo de errado aconteceu. Tente novamente em breve.')
+    FormHelper.testUrl('/login')
+  })
+
   it('Should present save accessToken if valid credentials are provided', () => {
     Http.mockOk()
     simulateValidSubmit()
     cy.getByTestId('error-wrap').should('not.have.descendants')
     FormHelper.testUrl('/')
     FormHelper.testLocalStorageItem('accessToken')
-  })
-
-  it('Should present UnexpectedError if invalid data is returned', () => {
-    Http.mockInvalidData()
-    simulateValidSubmit()
-    FormHelper.testMainError('Algo de errado aconteceu. Tente novamente em breve.')
-    FormHelper.testUrl('/login')
   })
 
   it('Should prevent multiple submits', () => {
