@@ -1,2 +1,2 @@
-[![Build Status](https://app.travis-ci.com/nxalan/clean-react.svg?branch=main)](https://app.travis-ci.com/nxalan/clean-react)
-[![Coverage Status](https://coveralls.io/repos/github/nxalan/clean-react/badge.svg?branch=main)](https://coveralls.io/github/nxalan/clean-react?branch=main)
+[![Build Status](https://app.travis-ci.com/nxalan/survey-react.svg?branch=main)](https://app.travis-ci.com/nxalan/survey-react)
+[![Coverage Status](https://coveralls.io/repos/github/nxalan/survey-react/badge.svg?branch=main)](https://coveralls.io/github/nxalan/survey-react?branch=main)
