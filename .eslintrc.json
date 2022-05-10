@@ -14,7 +14,8 @@
   },
   "plugins": ["react", "cypress"],
   "parserOptions": {
-    "project": "./tsconfig-eslint.json"
+    "project": "./tsconfig-eslint.json",
+    "warnOnUnsupportedTypeScriptVersion": false
   },
   "rules": {
     "@typescript-eslint/consistent-type-definitions": "off",
