@@ -3,7 +3,7 @@ import faker from '@faker-js/faker'
 
 export const mockPostRequest = (): HttpPostParams => ({
   url: faker.internet.url(),
-  body: faker.random.objectElement({ one: 1, two: 2, three: 3 })
+  body: faker.helpers.objectValue({ one: 1, two: 2, three: 3 })
 })
 
 export const mockGetRequest = (): HttpPostParams => ({

@@ -3,7 +3,7 @@ import faker from '@faker-js/faker'
 
 export const mockHttpResponse = (): any => (
   {
-    data: faker.random.objectElement({ one: 1, two: 2, three: 3 }),
+    data: faker.helpers.objectValue({ one: 1, two: 2, three: 3 }),
     status: faker.datatype.number()
   })
 
