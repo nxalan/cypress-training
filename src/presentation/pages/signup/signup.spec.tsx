@@ -4,10 +4,11 @@ import { createMemoryHistory } from 'history'
 import { render, waitFor, fireEvent, screen } from '@testing-library/react'
 import { ApiContext } from '@/presentation/contexts'
 import { SignUp } from '@/presentation/pages'
-import { ValidationStub, Helper, AddAccountSpy } from '@/presentation/test'
+import { Helper, ValidationStub } from '@/presentation/test'
+import { AddAccountSpy } from '@/domain/test'
 import faker from '@faker-js/faker'
 import { EmailInUseError } from '@/domain/errors'
-import { AccountModel } from '@/domain/models'
+import { AddAccount } from '@/domain/usecases'
 
 type SutParams = {
   validationError: string
@@ -15,7 +16,7 @@ type SutParams = {
 
 type SutTypes = {
   addAccountSpy: AddAccountSpy
-  setCurrentAccountMock: (account: AccountModel) => void
+  setCurrentAccountMock: (account: AddAccount.Model) => void
 }
 
 const history = createMemoryHistory({ initialEntries: ['/signup'] })
