@@ -4,7 +4,7 @@ import faker from '@faker-js/faker'
 import * as Http from '../utils/http-mocks'
 
 const path = /signup/
-const mockSuccess = (): void => Http.mockOk(path, 'POST', 'fx:account')
+const mockSuccess = (): void => Http.mockOk(path, 'POST', 'account')
 const mockEmailInUseError = (): void => Http.mockForbiddenError(path, 'POST')
 const mockUnexpectedError = (): void => Http.mockServerError(path, 'POST')
 

@@ -6,7 +6,7 @@ import faker from '@faker-js/faker'
 const path = /login/
 const mockInvalidCredentialsError = (): void => Http.mockUnauthorizedError(path)
 const mockUnexpectedError = (): void => Http.mockServerError(path, 'POST')
-const mockSuccess = (): void => Http.mockOk(path, 'POST', 'fx:account')
+const mockSuccess = (): void => Http.mockOk(path, 'POST', 'account')
 
 const populateFields = (): void => {
   cy.getByTestId('email').focus().type(faker.internet.email())
@@ -66,6 +66,7 @@ describe('Login', () => {
   it('Should present save account if valid credentials are provided', () => {
     mockSuccess()
     simulateValidSubmit()
+    cy.getByTestId('error-wrap').should('not.have.descendants')
     Helper.testUrl('/')
     Helper.testLocalStorageItem('account')
   })
