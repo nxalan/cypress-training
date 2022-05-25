@@ -25,7 +25,6 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   })
 
   useEffect(() => { validate('email') }, [state.email])
-
   useEffect(() => { validate('password') }, [state.password])
 
   const validate = (field: string): void => {

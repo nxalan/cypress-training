@@ -2,4 +2,4 @@ commands
 node_modules
 .vscode
 coverage
-public/js
+dist
