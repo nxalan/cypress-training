@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { FormContext, ApiContext } from '@/presentation/contexts'
@@ -25,18 +24,16 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
     mainError: ''
   })
 
-  useEffect(() => {
+  useEffect(() => { validate('email') }, [state.email])
+
+  useEffect(() => { validate('password') }, [state.password])
+
+  const validate = (field: string): void => {
     const { email, password } = state
     const formData = { email, password }
-    const emailError = validation.validate('email', formData)
-    const passwordError = validation.validate('password', formData)
-    setState((prevState) => ({
-      ...prevState,
-      emailError,
-      passwordError,
-      isFormInvalid: !!emailError || !!passwordError
-    }))
-  }, [state.email, state.password])
+    setState((prevState) => ({ ...prevState, [`${field}Error`]: validation.validate(field, formData) }))
+    setState((prevState) => ({ ...prevState, isFormInvalid: !!prevState.emailError || !!prevState.passwordError }))
+  }
 
   const handleSubmit = async (event: React.SyntheticEvent): Promise<void> => {
     event.preventDefault()
