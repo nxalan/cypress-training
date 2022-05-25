@@ -2,11 +2,22 @@ language: node_js
 dist: bionic
 node_js:
   - 16
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
+cache:
+  npm: true
+  directories:
+    - ~/.cache
 script:
   - eslint 'src/**'
   - npm run test:coveralls
+  - npm run test:cypress:ci
 deploy:
   provider: heroku
   api_key: $HEROKU_API
   app: enquestesreact
   skip_cleanup: true
+notifications:
+  email: false
