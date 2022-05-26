@@ -1,8 +1,10 @@
 import faker from '@faker-js/faker'
-import { Method } from 'axios'
 
 export const mockUnauthorizedError = (url: RegExp): void => {
-  cy.intercept('POST', url, {
+  cy.intercept({
+    method: 'POST',
+    url
+  }, {
     statusCode: 401,
     body: {
       error: faker.random.words()
@@ -10,8 +12,11 @@ export const mockUnauthorizedError = (url: RegExp): void => {
   }).as('request')
 }
 
-export const mockForbiddenError = (url: RegExp, method: Method): void => {
-  cy.intercept(method, url, {
+export const mockForbiddenError = (url: RegExp, method: string): void => {
+  cy.intercept({
+    method,
+    url
+  }, {
     statusCode: 403,
     body: {
       error: faker.random.words()
@@ -19,18 +24,24 @@ export const mockForbiddenError = (url: RegExp, method: Method): void => {
   }).as('request')
 }
 
-export const mockServerError = (url: RegExp, method: Method): void => {
-  cy.intercept(method, url, {
-    statusCode: faker.helpers.arrayElement([400, 404, 500]),
+export const mockServerError = (url: RegExp, method: string): void => {
+  cy.intercept({
+    method,
+    url
+  }, {
+    statusCode: faker.helpers.randomize([400, 404, 500]),
     body: {
       error: faker.random.words()
     }
   }).as('request')
 }
 
-export const mockOk = (url: RegExp, method: Method, fixture: string): void => {
-  cy.intercept(method, url, {
+export const mockOk = (url: RegExp, method: string, fixture: string, alias: string = 'request'): void => {
+  cy.intercept({
+    method,
+    url
+  }, {
     statusCode: 200,
     fixture
-  }).as('request')
+  }).as(alias)
 }

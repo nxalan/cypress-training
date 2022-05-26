@@ -63,10 +63,9 @@ describe('Login', () => {
     Helper.testUrl('/login')
   })
 
-  it('Should present save account if valid credentials are provided', () => {
+  it('Should store account on localStorage if valid credentials are provided', () => {
     mockSuccess()
     simulateValidSubmit()
-    cy.getByTestId('error-wrap').should('not.have.descendants')
     Helper.testUrl('/')
     Helper.testLocalStorageItem('account')
   })
