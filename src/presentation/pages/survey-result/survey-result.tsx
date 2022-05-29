@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Styles from './survey-result-styles.scss'
 import { Calendar, Footer, Header, Loading, Error } from '@/presentation/components'
 import { LoadSurveyResult } from '@/domain/usecases'
+import { useErrorHandler } from '@/presentation/hooks'
 import FlipMove from 'react-flip-move'
 
 type Props = {
@@ -9,6 +10,9 @@ type Props = {
 }
 
 const SurveyResult: React.FC<Props> = ({ loadSurveyResult }: Props) => {
+  const handleError = useErrorHandler((error: Error) => {
+    setState((prevState) => ({ ...prevState, surveyResult: null, error: error.message }))
+  })
   const [state, setState] = useState({
     isLoading: false,
     error: '',
@@ -18,7 +22,7 @@ const SurveyResult: React.FC<Props> = ({ loadSurveyResult }: Props) => {
   useEffect(() => {
     loadSurveyResult.load()
       .then(surveyResult => setState(prevState => ({ ...prevState, surveyResult })))
-      .catch()
+      .catch(handleError)
   }, [])
 
   return (
@@ -36,7 +40,7 @@ const SurveyResult: React.FC<Props> = ({ loadSurveyResult }: Props) => {
                 <li data-testid="answer-wrap" key={answer.answer} className={answer.isCurrentAccountAnswer ? Styles.active : ''}>
                   {answer.image && (<img data-testid="image" src={answer.image} alt={answer.answer} />)}
                   <span data-testid="answer" className={Styles.answer}>{answer.answer}</span>
-                  <span data-testid="percent" className={Styles.percent}>{answer.percent}</span>
+                  <span data-testid="percent" className={Styles.percent}>{answer.percent}%</span>
                 </li>
               )}
             </FlipMove>
