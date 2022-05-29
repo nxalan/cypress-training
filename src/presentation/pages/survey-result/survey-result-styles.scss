@@ -1,7 +1,7 @@
 @import "../../styles/colors.scss";
 @import "../../styles/animations.scss";
 
-.surveyResultMap {
+.surveyResultWrap {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -61,7 +61,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .surveyResultMap {
+  .surveyResultWrap {
     .contentWrap {
       &:empty {
         background-position:
