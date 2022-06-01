@@ -2,6 +2,7 @@ import { HttpStatusCode } from '@/data/protocols/http'
 import { HttpClientSpy, mockRemoteSurveyResultModel } from '@/data/test'
 import { RemoteSaveSurveyResult } from '@/data/usecases'
 import { AccessDeniedError, UnexpectedError } from '@/domain/errors'
+import { mockSaveSurveyResultParams } from '@/domain/test'
 import faker from '@faker-js/faker'
 
 type SutTypes = {
@@ -18,7 +19,7 @@ const makeSut = (url = faker.internet.url()): SutTypes => {
   }
 }
 describe('RemoteSaveSurveyResult', () => {
-  test('Should call HttpClient with correct URL and method', async () => {
+  test('Should call HttpClient with correct values', async () => {
     const url = faker.internet.url()
     const { sut, httpClientSpy } = makeSut(url)
     mockRemoteSurveyResultModel()
@@ -26,8 +27,10 @@ describe('RemoteSaveSurveyResult', () => {
       statusCode: HttpStatusCode.ok,
       body: mockRemoteSurveyResultModel()
     }
-    await sut.save({ answer: faker.random.word() })
+    const saveSurveyResultParams = mockSaveSurveyResultParams()
+    await sut.save(saveSurveyResultParams)
     expect(httpClientSpy.url).toBe(url)
     expect(httpClientSpy.method).toBe('put')
+    expect(httpClientSpy.body).toEqual(saveSurveyResultParams)
   })
 })
