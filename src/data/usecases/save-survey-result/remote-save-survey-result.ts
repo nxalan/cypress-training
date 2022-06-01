@@ -16,8 +16,9 @@ export class RemoteSaveSurveyResult implements SaveSurveyResult {
       body: params
     })
     switch (httpResponse.statusCode) {
+      case HttpStatusCode.ok: return null
       case HttpStatusCode.forbidden: throw new AccessDeniedError()
-      default: return null
+      default: throw new UnexpectedError()
     }
   }
 }
