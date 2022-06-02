@@ -1,7 +1,10 @@
 {
   "name": "survey-react",
-  "version": "1.6.2",
-  "description": "",
+  "version": "2.0.0",
+  "description": "NodeJS Rest API using TDD, Clean Architecture and Typescript",
+  "author": "Alan Nicolas de Oliveira",
+  "homepage": "https://enquestesreact.herokuapp.com/",
+  "license": "GNU GPL3",
   "main": "index.js",
   "scripts": {
     "start": "node index",
@@ -19,8 +22,6 @@
     "check": "npm-check -u -s"
   },
   "keywords": [],
-  "author": "Alan Oliveira",
-  "license": "GNU GPL3",
   "devDependencies": {
     "@cypress/webpack-preprocessor": "^5.11.1",
     "@faker-js/faker": "^6.0.0",
