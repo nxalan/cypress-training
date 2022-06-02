@@ -2,12 +2,12 @@ import * as Helper from '../utils/helpers'
 import * as Http from '../utils/http-mocks'
 
 const path = /api\/surveys/
+const mockLoadSuccess = (): void => Http.mockOk(path, 'GET', 'survey-result')
 
 describe('SurveyResult', () => {
   describe('load', () => {
     const mockUnexpectedError = (): void => Http.mockServerError(path, 'GET')
     const mockAccessDeniedError = (): void => Http.mockForbiddenError(path, 'GET')
-    const mockLoadSuccess = (): void => Http.mockOk(path, 'GET', 'survey-result')
 
     beforeEach(() => {
       cy.fixture('account').then(account => {
@@ -61,6 +61,23 @@ describe('SurveyResult', () => {
       cy.visit('/surveys/any_id')
       cy.getByTestId('back-button').click()
       Helper.testUrl('/')
+    })
+  })
+  describe('save', () => {
+    const mockUnexpectedError = (): void => Http.mockServerError(path, 'PUT')
+
+    beforeEach(() => {
+      cy.fixture('account').then(account => {
+        Helper.setLocalStorageItem('account', account)
+      })
+      mockLoadSuccess()
+      cy.visit('/surveys/any_id')
+    })
+
+    it('Should present error on UnexpectedError', () => {
+      mockUnexpectedError()
+      cy.get('li:nth-child(2)').click()
+      cy.getByTestId('error').should('contain.text', 'Algo de errado aconteceu. Tente novamente em breve.')
     })
   })
 })
