@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import { FormContext, ApiContext } from '@/presentation/contexts'
 import Styles from './login-styles.scss'
-import { Footer, Input, FormStatus, LoginHeader, SubmitButton } from '@/presentation/components'
-import { Validation } from '@/presentation/protocols/validation'
+import { Link, useHistory } from 'react-router-dom'
 import { Authentication } from '@/domain/usecases'
+import { FormContext, ApiContext } from '@/presentation/contexts'
+import { Validation } from '@/presentation/protocols/validation'
+import { Footer, Input, FormStatus, LoginHeader, SubmitButton } from '@/presentation/components'
 
 type Props = {
   validation: Validation
@@ -69,7 +69,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
           <Input type="password" name="password" placeholder="Digite sua senha" />
           <SubmitButton text="Entrar" />
           <Link data-testid="signup-link" to="/signup" className={Styles.link}>Criar conta</Link>
-          <FormStatus />
+          <FormStatus state={state} />
         </form>
       </FormContext.Provider>
       <Footer />

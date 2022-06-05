@@ -16,13 +16,13 @@ const Answer: React.FC<Props> = ({ answer }: Props) => {
     }
     onAnswer(answer.answer)
   }
-
   return (
-    <li data-testid="answer-wrap"
-    className={[Styles.answerWrap, activeClassName].join(' ')}
-    onClick={answerClick}
+    <li
+      data-testid="answer-wrap"
+      className={[Styles.answerWrap, activeClassName].join(' ')}
+      onClick={answerClick}
     >
-      {answer.image && (<img data-testid="image" src={answer.image} alt={answer.answer} />)}
+      {answer.image && <img data-testid="image" src={answer.image} alt={answer.answer} />}
       <span data-testid="answer" className={Styles.answer}>{answer.answer}</span>
       <span data-testid="percent" className={Styles.percent}>{answer.percent}%</span>
     </li>

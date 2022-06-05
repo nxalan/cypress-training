@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useState, useEffect, useContext } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import { FormContext, ApiContext } from '@/presentation/contexts'
 import Styles from './signup-styles.scss'
-import { Footer, Input, FormStatus, LoginHeader, SubmitButton } from '@/presentation/components'
-import { Validation } from '@/presentation/protocols/validation'
+import { Link, useHistory } from 'react-router-dom'
 import { AddAccount } from '@/domain/usecases'
+import { Validation } from '@/presentation/protocols/validation'
+import { FormContext, ApiContext } from '@/presentation/contexts'
+import { Footer, Input, FormStatus, LoginHeader, SubmitButton } from '@/presentation/components'
 
 type Props = {
   validation: Validation
@@ -80,7 +79,7 @@ const SignUp: React.FC<Props> = ({ validation, addAccount }: Props) => {
           <Input type="password" name="passwordConfirmation" placeholder="Repita sua senha" />
           <SubmitButton text="Cadastrar" />
           <Link data-testid="login-link" replace to="/login" className={Styles.link}>Voltar Para Login</Link>
-          <FormStatus />
+          <FormStatus state={state} />
         </form>
       </FormContext.Provider>
       <Footer />

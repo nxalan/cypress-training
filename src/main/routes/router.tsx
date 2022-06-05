@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { makeLogin, makeSignUp, makeSurveyList, makeSurveyResult } from '@/main/factories/pages'
+import { PrivateRoute } from '@/main/proxies'
 import { ApiContext } from '@/presentation/contexts'
-import { setCurrentAccountAdapter, getCurrentAccountAdapter } from '@/main/adapters/current-account-adapter'
-import { PrivateRoute } from '@/presentation/components'
+import { makeLogin, makeSignUp, makeSurveyList, makeSurveyResult } from '@/main/factories/pages'
+import { setCurrentAccountAdapter, getCurrentAccountAdapter } from '@/main/adapters'
 
 const Router: React.FC = () => {
   return (

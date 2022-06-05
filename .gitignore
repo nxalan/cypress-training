@@ -1,6 +1,4 @@
-commands
 node_modules
 .vscode
 coverage
 dist
-package-lock.json

@@ -1,12 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Styles from './item-styles.scss'
+import { Link } from 'react-router-dom'
 import { LoadSurveyList } from '@/domain/usecases'
 import { Icon, IconName, Calendar } from '@/presentation/components'
 
 type Props = {
   survey: LoadSurveyList.Model
 }
+
 const SurveyItem: React.FC<Props> = ({ survey }: Props) => {
   const iconName = survey.didAnswer ? IconName.thumbUp : IconName.thumbDown
   return (
