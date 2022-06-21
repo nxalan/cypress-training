@@ -10,9 +10,11 @@
 The objective of this application is to create a system in ReactJs using the Hooks, with a well-defined and decoupled architecture, using TDD (test-oriented programming) as a working methodology, Clean Architecture to distribute responsibilities in layers, always following the principles of SOLID, DRY, YAGNI, KISS and applying Design Patterns to solve some common problems.
 <br /><br />
 
-## Documentation
+> ## Useful Links
 
-* [**SWAGGER**](https://enquetesapi.herokuapp.com/api-docs)
+* [**Live Application**](https://enquestesreact.herokuapp.com/)
+* [**Backend Repository**](https://github.com/nxalan/survey-node-api)
+* [**Documentation**](https://enquetesapi.herokuapp.com/api-docs)
 
 > ## Principles
 
@@ -68,7 +70,7 @@ The objective of this application is to create a system in ReactJs using the Hoo
 * Webpack
 * SASS + Animations
 * NPM
-* Travis CI
+* Github Actions
 * Faker
 * Coveralls
 * Husky
@@ -88,6 +90,7 @@ The objective of this application is to create a system in ReactJs using the Hoo
 * Custom Hooks
 * Router
 * Memo
+
 > ## Typescript Features
 
 * Advanced OOP
