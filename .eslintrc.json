@@ -9,9 +9,6 @@
     "plugin:react/recommended",
     "plugin:cypress/recommended"
   ],
-  "env": {
-    "cypress/globals": true
-  },
   "plugins": ["react", "cypress"],
   "parserOptions": {
     "project": "./tsconfig-eslint.json"
@@ -23,6 +20,7 @@
     "@typescript-eslint/comma-spacing": "off",
     "@typescript-eslint/return-await": "off",
     "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/triple-slash-reference": "off",
     "no-redeclare": "off",
     "import/export": "off",
     "react/jsx-uses-react": "error",
