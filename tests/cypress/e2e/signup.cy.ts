@@ -1,8 +1,19 @@
 import faker from '@faker-js/faker'
-import { mockForbiddenError } from '../utils/http-mocks'
+import { mockForbiddenError, mockServerError, mockOk } from '../utils/http-mocks'
 
 const path = /signup/
 const mockEmailInUserError = (): void => mockForbiddenError(path, 'POST')
+const mockUnexpectedError = (): void => mockServerError(path, 'POST')
+const mockSuccessSignup = (): void => mockOk(path, 'POST', 'account')
+
+const simulateValidSubmit = (): void => {
+  cy.getByTestId('name').focus().type(faker.random.alphaNumeric(7))
+  cy.getByTestId('email').focus().type(faker.internet.email())
+  const password = faker.random.alphaNumeric(5)
+  cy.getByTestId('password').focus().type(password)
+  cy.getByTestId('passwordConfirmation').focus().type(password)
+  cy.getByTestId('submit').click()
+}
 
 describe('Signup', () => {
   beforeEach(() => {
@@ -51,16 +62,38 @@ describe('Signup', () => {
   })
 
   it('Should present EmailInUseError on 403', () => {
+    mockEmailInUserError()
+    simulateValidSubmit()
+    cy.getByTestId('spinner').should('not.exist')
+    cy.getByTestId('main-error').should('contain.text', 'Esse email já está em uso')
+    const baseUrl: string | null = Cypress.config().baseUrl
+    cy.url().should('eq', `${baseUrl}/signup`)
+  })
+
+  it('Should present UnexpectedError on default error cases', () => {
+    mockUnexpectedError()
+    simulateValidSubmit()
+    cy.getByTestId('main-error').should('contain.text', 'Algo de errado aconteceu. Tente novamente em breve.')
+    const baseUrl: string | null = Cypress.config().baseUrl
+    cy.url().should('eq', `${baseUrl}/signup`)
+  })
+
+  it('Should present save account if valid credentials are provided', () => {
+    mockSuccessSignup()
+    simulateValidSubmit()
+    const baseUrl: string | null = Cypress.config().baseUrl
+    cy.url().should('eq', `${baseUrl}/`)
+    cy.window().then(window => assert.isOk(window.localStorage.getItem('account')))
+  })
+
+  it('Should prevent multiple submits', () => {
+    mockSuccessSignup()
     cy.getByTestId('name').focus().type(faker.random.alphaNumeric(7))
     cy.getByTestId('email').focus().type(faker.internet.email())
     const password = faker.random.alphaNumeric(5)
     cy.getByTestId('password').focus().type(password)
     cy.getByTestId('passwordConfirmation').focus().type(password)
-    mockEmailInUserError()
-    cy.getByTestId('submit').click()
-    cy.getByTestId('spinner').should('not.exist')
-    cy.getByTestId('main-error').should('contain.text', 'Esse email já está em uso')
-    const baseUrl: string | null = Cypress.config().baseUrl
-    cy.url().should('eq', `${baseUrl}/signup`)
+    cy.getByTestId('submit').dblclick()
+    cy.get('@request.all').should('have.length', 1)
   })
 })
