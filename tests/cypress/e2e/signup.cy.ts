@@ -66,23 +66,20 @@ describe('Signup', () => {
     simulateValidSubmit()
     cy.getByTestId('spinner').should('not.exist')
     cy.getByTestId('main-error').should('contain.text', 'Esse email já está em uso')
-    const baseUrl: string | null = Cypress.config().baseUrl
-    cy.url().should('eq', `${baseUrl}/signup`)
+    cy.testUrl('/signup')
   })
 
   it('Should present UnexpectedError on default error cases', () => {
     mockUnexpectedError()
     simulateValidSubmit()
     cy.getByTestId('main-error').should('contain.text', 'Algo de errado aconteceu. Tente novamente em breve.')
-    const baseUrl: string | null = Cypress.config().baseUrl
-    cy.url().should('eq', `${baseUrl}/signup`)
+    cy.testUrl('/signup')
   })
 
   it('Should present save account if valid credentials are provided', () => {
     mockSuccessSignup()
     simulateValidSubmit()
-    const baseUrl: string | null = Cypress.config().baseUrl
-    cy.url().should('eq', `${baseUrl}/`)
+    cy.testUrl('/')
     cy.window().then(window => assert.isOk(window.localStorage.getItem('account')))
   })
 

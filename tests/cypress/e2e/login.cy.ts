@@ -47,23 +47,20 @@ describe('Login', () => {
     simulateValidSubmit()
     cy.getByTestId('spinner').should('not.exist')
     cy.getByTestId('main-error').should('contain.text', 'Credenciais inválidas')
-    const baseUrl: string | null = Cypress.config().baseUrl
-    cy.url().should('eq', `${baseUrl}/login`)
+    cy.testUrl('/login')
   })
 
   it('Should present UnexpectedError on default error cases', () => {
     mockUnexpectedError()
     simulateValidSubmit()
     cy.getByTestId('main-error').should('contain.text', 'Algo de errado aconteceu. Tente novamente em breve.')
-    const baseUrl: string | null = Cypress.config().baseUrl
-    cy.url().should('eq', `${baseUrl}/login`)
+    cy.testUrl('/login')
   })
 
   it('Should store account on localStorage if valid credentials are provided', () => {
     mockSuccessLogin()
     simulateValidSubmit()
-    const baseUrl: string | null = Cypress.config().baseUrl
-    cy.url().should('eq', `${baseUrl}/`)
+    cy.testUrl('/')
     cy.window().then(window => assert.isOk(window.localStorage.getItem('account')))
   })
 })
