@@ -33,3 +33,15 @@ export const mockOk = (url: RegExp, method: string, fixture: string, alias: stri
     fixture
   }).as(alias)
 }
+
+export const mockUnauthorizedError = (url: RegExp, alias: string = 'request'): void => {
+  cy.intercept({
+    url,
+    method: 'POST'
+  }, {
+    statusCode: 401,
+    body: {
+      error: faker.random.words()
+    }
+  })
+}
