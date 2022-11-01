@@ -17,7 +17,8 @@
     "test": "cross-env NODE_ICU_DATA=node_modules/full-icu npx jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "npm test -- --watch",
     "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage"
+    "test:ci": "npm test -- --coverage",
+    "test:cypress": "npx cypress open"
   },
   "keywords": [],
   "devDependencies": {
