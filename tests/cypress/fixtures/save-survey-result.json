@@ -1,0 +1,20 @@
+{
+  "surveyId": "any_id",
+  "question": "any_question",
+  "date": "2022-06-20T01:30:34.253Z",
+  "answers": [
+    {
+      "answer": "any_answer_1",
+      "image": "any_image",
+      "count": 5,
+      "percent": 30,
+      "isCurrentAccountAnswer": false
+    },
+    {
+      "answer": "any_answer_2",
+      "count": 2,
+      "percent": 50,
+      "isCurrentAccountAnswer": true
+    }
+  ]
+}
